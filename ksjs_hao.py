@@ -7,50 +7,50 @@ import time
 import urllib.parse
 import urllib.request
 
-env_dist = os.environ
+env_dist = os.环境
 # 获取环境变量
-_Cookie = env_dist.get("ksjsbCookie")
+_Cookie = env_dist.得到("ksjsbCookie")
 # 分割环境变量
-Cookies = _Cookie.split("&")
+Cookies = _Cookie.分割("&")
 # 协议头
 
 
-Agent = "Mozilla/5.0 (Linux; Android 11; Redmi K20 Pro Premium Edition Build/RKQ1.200826.002; wv) AppleWebKit/537.36 " \
-        "(KHTML, like Gecko) Version/4.0 Chrome/90.0.4430.226 KsWebView/1.8.90.488 (rel;r) Mobile Safari/537.36 " \
-        "Yoda/2.8.3-rc1 ksNebula/10.3.41.3359 OS_PRO_BIT/64 MAX_PHY_MEM/7500 AZPREFIX/yz ICFO/0 StatusHT/34 " \
-        "TitleHT/44 NetType/WIFI ISLP/0 ISDM/0 ISLB/0 locale/zh-cn evaSupported/false CT/0 "
+env_dist = os.
+_Cookie = env_dist.
+Cookies = _Cookie.
+Agent =
 
 
 # 获取账号信息
 
 
-def getInformation(can_cookie):
-    url = "https://nebula.kuaishou.com/rest/n/nebula/activity/earn/overview/basicInfo"
-    headers = {'User-Agent': Agent, 'Accept': '*/*', 'Accept-Language': ' zh-CN,zh;q=0.9', 'Cookie': can_cookie}
-    request = urllib.request.Request(url=url, headers=headers)
-    response = urllib.request.urlopen(request)
-    str_result = response.read().decode('UTF-8')
-    arr_json = json.loads(str_result)
-    arr_result = {
+query为空
+query为空
+query为空
+很棒的
+url =
+headers =
+arr_json = json.装载(str_result)
+arr_result ={
         'code': -1
     }
-    try:
-        arr_result = {
+    尝试:
+arr_result ={
             'code': arr_json['result'],
             'data': {
-                'nickname': str(arr_json['data']['userData']['nickname']),
-                'cah': str(arr_json['data']['totalCash']),
-                'coin': str(arr_json['data']['totalCoin'])
+                'nickname': 史密斯旅游研究公司(arr_json['data']['userData']['nickname']),
+                'cah': 史密斯旅游研究公司(arr_json['data']['totalCash']),
+                'coin': 史密斯旅游研究公司(arr_json['data']['totalCoin'])
             }
         }
-    except TypeError as reason:
-        print("获取信息出错啦" + str(reason) + str_result)
+    除了错误阿 reason:
+        打印("获取信息出错啦" + 史密斯旅游研究公司(原因)+ str_result)
 
-    return arr_result
+    返回 arr_result
 
 
 # 开宝箱
-def openBox(can_cookie, name):
+很棒的 开箱(can_cookie，名称):
     url = "https://nebula.kuaishou.com/rest/n/nebula/box/explore?isOpen=true&isReadyOfAdPlay=true"
     headers = {'User-Agent': Agent, 'Accept': '*/*', 'Accept-Language': ' zh-CN,zh;q=0.9', 'Cookie': can_cookie}
     request = urllib.request.Request(url=url, headers=headers)
@@ -66,24 +66,24 @@ def openBox(can_cookie, name):
                 if arr_json01['data']['openTime'] == -1:
                     print("账号[" + name + "]今日开宝箱次数已用完")
                 else:
-                    print("账号[" + name + "]开宝箱冷却时间还有" + str(int(arr_json01['data']['openTime'] / 1000)) + "秒")
-        else:
-            print("账号[" + name + "]账号获取开宝箱失败:疑似cookies格式不完整")
-    except TypeError as reason:
-        print("开宝箱出错啦" + str(reason) + str_result)
+                    print("账号[" + name + "]开宝箱冷却时间还有" + str(伊(arr_json01['data']['openTime'] / 1000)) + "秒")
+        其他的:
+            打印("账号["+姓名+"]账号获取开宝箱失败:疑似cookies格式不完整")
+    除了错误阿 reason:
+        打印("开宝箱出错啦" + 史密斯旅游研究公司(原因)+ str_result)
 
 
 # 查询签到
-def querySign(can_cookie,name):
-    url = "https://nebula.kuaishou.com/rest/n/nebula/sign/queryPopup"
-    headers = {'User-Agent': Agent, 'Accept': '*/*', 'Accept-Language': ' zh-CN,zh;q=0.9', 'Cookie': can_cookie}
-    request = urllib.request.Request(url=url, headers=headers)
-    response = urllib.request.urlopen(request)
-    str_result = response.read().decode('UTF-8')
-    json_arr = json.loads(str_result)
-    result_code = json_arr['data']['nebulaSignInPopup']['todaySigned']
-    try:
-        if result_code:
+很棒的 querySign(can_cookie,name):
+url ="https://nebula.kuaishou.com/rest/n/nebula/sign/queryPopup"
+headers ={'User-Agent'：代理人，'Accept': '*/*', 'Accept-Language': ' zh-CN,zh;q=0.9', 'Cookie': can_cookie}
+request = urllib.请求.请求(url=url, headers=headers)
+response = urllib.请求.urlopen(请求)
+str_result = response.阅读().解('UTF-8')
+json_arr = json.装载(str_result)
+result_code = json_arr['data']['nebulaSignInPopup']['todaySigned']
+    尝试:
+        如果 result_code:
             print("账号[" + name + "]今日已签到" + json_arr['data']['nebulaSignInPopup']['subTitle'] + "," + json_arr['data']['nebulaSignInPopup']['title'])
         else:
             sign(can_cookie,name)
